@@ -7,7 +7,7 @@ class Hand():
     def __str__(self):
         output = ""
         for card in self.cards:
-            output = output + str(card) + " "
+            output = output + str(card) + "  "
 
         return output
 
