@@ -7,30 +7,6 @@ from hand import Hand
 from score import score_hand
 
 '''
-deck = Deck()
-print("Num Cards in Deck", deck.get_num_cards())
-hand = Hand(deck, 5)
-print(hand)
-print("Num Cards in Deck", deck.get_num_cards())
-hand.discard(3)
-print(hand)
-hand.draw(deck)
-print(hand)
-print("Num Cards in Deck", deck.get_num_cards())
-score = score_hand(hand)
-print(score)
-
-test_hand = Hand(deck, 5)
-test_hand.empty_hand()
-print(len(test_hand.cards))
-test_hand.add_card(Card("H", 10))
-test_hand.add_card(Card("D", 11))
-test_hand.add_card(Card("C", 13))
-test_hand.add_card(Card("S", 13))
-test_hand.add_card(Card("D", 2))
-print(score_hand(test_hand))
-
-
 counts = dict()
 for iter in range(1000000):
     deck = Deck()
@@ -74,6 +50,7 @@ else:
     total_credits = 20.00
     bet = 5
     credit_value = 0.25
+    num_cards = 5
 
     while (command.lower() != 'q') and (total_credits>0):
         os.system('clear')
@@ -83,7 +60,9 @@ else:
         print('')
 
         deck = Deck()
-        hand = Hand(deck, 5)
+        hand = Hand()
+        for _ in range(num_cards):
+            hand.draw_card(deck)
 
         print("Select cards to hold separated by a space")
         print('Hit return to discard all')
@@ -102,7 +81,7 @@ else:
             if pos not in hold_cards:
                 hand.discard(pos)
         for _ in range(5 - len(hold_cards)):
-            hand.draw(deck)
+            hand.draw_card(deck)
 
         print(hand)
         score = score_hand(hand)
